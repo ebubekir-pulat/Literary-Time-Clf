@@ -11,3 +11,8 @@ Class	        Publication years
 17th century	1600–1699
 18th century	1700–1799
 19th century	1800–1899
+
+
+Task 1.
+Get 50 book exceprts from each century, in English, that have good OCR scores, and no author can contribute to more
+than one exceprt across all centuries. 
