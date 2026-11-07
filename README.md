@@ -14,5 +14,5 @@ Class	        Publication years
 
 
 Task 1.
-Get 50 book exceprts from each century, in English, that have good OCR scores, and no author can contribute to more
-than one exceprt across all centuries. 
+Get 50 English book excerpts from each century, that have good OCR scores, and no author can contribute to more
+than one excerpt across all centuries. Test prepare_dataset.py (if it gets enough samples, and observe prints).
