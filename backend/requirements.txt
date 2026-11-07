@@ -1,0 +1,6 @@
+pandas
+requests
+tqdm
+datasets<4.0.0
+matplotlib
+seaborn
