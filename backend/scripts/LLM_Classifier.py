@@ -1,7 +1,9 @@
 import json
-from ollama import chat, ChatResponse
+from ollama import chat
 from pydantic import BaseModel, Field
 from typing import Literal
+from sklearn.metrics import accuracy_score
+from load_dataset import get_train_and_test_data
 
 MODEL = "qwen2.5:3b"
 
@@ -18,7 +20,9 @@ class Prediction(BaseModel):
 # Predict individual samples
 results = []
 
-for i, sample in enumerate(samples):
+X_train, X_test, y_train, y_test = get_train_and_test_data()
+
+for i, sample in enumerate(X_test):
 
     prompt = f"""
     Determine which period this historical book excerpt most likely
@@ -26,20 +30,19 @@ for i, sample in enumerate(samples):
     grammar, and writing style.
 
     Possible periods:
-    - 1800-1832
-    - 1833-1866
-    - 1867-1899
+    - 1800-1832 (inclusive)
+    - 1833-1866 (inclusive)
+    - 1867-1899 (inclusive)
 
     Book excerpt:
-    {sample['text']}
-
-    Classify the excerpt based on its linguistic characteristics,
-    NOT its provided publication year.
+    {sample}
 
     Provide your best prediction and explain your reasoning.
+    Record a confidence score, of how confident you are in your
+    answer, as well.
     """
 
-    response = ollama.chat(
+    response = chat(
         model=MODEL,
         messages=[
             {
@@ -55,18 +58,16 @@ for i, sample in enumerate(samples):
     )
 
     results.append({
-        "book_id": sample["book_id"],
-        "actual_year": sample["year"],
         "prediction": prediction.model_dump()
     })
 
-    print(f"Sample {i+1}/{len(samples)}")
+    print(f"Sample {i+1}/{len(X_test)}")
     print(prediction.model_dump())
+    print("Expected: ", y_test[i])
     print("-" * 50)
 
 
-# Save predictions
-with open("predictions.json", "w", encoding="utf-8") as f:
-    json.dump(results, f, ensure_ascii=False, indent=4)
+y_pred = [pred["prediction"]["answer"] for pred in results]
 
-print("Predictions saved to predictions.json")
+print("Final Results")
+print("Accuracy: ", accuracy_score(y_test, y_pred))
