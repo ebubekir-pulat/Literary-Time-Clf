@@ -24,5 +24,4 @@ confidence score and explanation. Results are scored by accuracy.
 
 
 TO-DO:
-1. Run llm_classifier and see results
-2. Add f1-score, recall, precision to llm classifier
+1. Add accuracy, f1-score, recall, precision to a function that can pass to llm classifier results

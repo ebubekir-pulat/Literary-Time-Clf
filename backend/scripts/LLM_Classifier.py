@@ -27,7 +27,7 @@ for i, sample in enumerate(X_test):
     prompt = f"""
     Determine which period this historical book excerpt most likely
     originates from, based on its language, spelling, vocabulary,
-    grammar, and writing style.
+    grammar, writing style and any other possible factors.
 
     Possible periods:
     - 1800-1832 (inclusive)
@@ -37,9 +37,9 @@ for i, sample in enumerate(X_test):
     Book excerpt:
     {sample}
 
-    Provide your best prediction and explain your reasoning.
-    Record a confidence score, of how confident you are in your
-    answer, as well.
+    Provide your best prediction and explain your reasoning
+    for your prediction concisely. Record a confidence score, 
+    of how confident you are in your answer, as well.
     """
 
     response = chat(

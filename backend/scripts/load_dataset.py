@@ -1,5 +1,6 @@
 import json
 from sklearn.model_selection import train_test_split
+from sklearn.utils import shuffle
 
 # get_dataset() returns the samples for each century-third from written dataset
 # Ensure dataset files have been written before running get_dataset
@@ -52,5 +53,10 @@ def get_train_and_test_data():
         X_test.extend(X_test_part)
         y_train.extend(y_train_part)
         y_test.extend(y_test_part)
+
+
+    # Shuffle while preserving X/y correspondence
+    X_train, y_train = shuffle(X_train, y_train, random_state=42)
+    X_test, y_test = shuffle(X_test, y_test, random_state=42)
 
     return X_train, X_test, y_train, y_test
