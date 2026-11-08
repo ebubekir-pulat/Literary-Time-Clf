@@ -2,8 +2,8 @@ Literary Time Classifier
 
 Dataset
 Period classes: 3
-Books per class: 50
-Total books: 150
+Books per class: 100
+Total books: 300
 
 Source: biglam/blbooks-parquet (based off TheBritishLibrary/blbooks)
 
@@ -14,5 +14,5 @@ Class	                    Publication years
 
 
 Task 1.
-Get 50 English book excerpts from each century-third, that have sufficient OCR scores, and no author can contribute to more
+Get 100 English book excerpts from each century-third, that have sufficient OCR scores, and no author can contribute to more
 than one excerpt across all centuries.

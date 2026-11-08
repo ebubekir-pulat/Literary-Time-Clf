@@ -1,5 +1,5 @@
 import json
-from backend.scripts.prepare_dataset import write_dataset
+from prepare_dataset import write_dataset
 
 def get_dataset():
     write_dataset()

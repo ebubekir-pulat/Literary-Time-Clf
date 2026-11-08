@@ -6,14 +6,14 @@ def write_dataset():
 
     DATASET = "biglam/blbooks-parquet"
 
-    print("Dataset Source: ", DATASET)
+    print("Dataset Source: ", DATASET, "\n")
 
     dataset = load_dataset(DATASET, split='train', streaming=True, trust_remote_code=True)
 
     rd_seed = random.seed(2)
     dataset = dataset.shuffle(seed=rd_seed, buffer_size=10_000)
 
-    print("Dataset Preview: ", dataset)
+    print("\nDataset Preview: ", dataset, "\n")
 
     # Thirds of the 19th Century
     first_third  = []    # 1800 - 1832
@@ -27,7 +27,7 @@ def write_dataset():
 
     dataset_full = False
 
-    # Get 50 valid book excerpts for each century-third
+    # Get 100 valid book excerpts for each century-third
     for loop in range(1000):
         if dataset_full == True:
             break
@@ -35,7 +35,7 @@ def write_dataset():
         dataset.set_epoch(loop)
 
         for i, sample in enumerate(dataset):
-            if i == 25:
+            if i == 35:
                 break
             
             book_added = False
@@ -68,19 +68,19 @@ def write_dataset():
 
                 ready_sample = {"book_id": record_id, "year": year, "text": text}
 
-                if len(first_third) == 50 and len(second_third) == 50 and len(third_third) == 50:
+                if len(first_third) == 100 and len(second_third) == 100 and len(third_third) == 100:
                     dataset_full = True
                     break
 
-                elif (year >= 1800 and year < 1833) and (len(first_third) < 50):
+                elif (year >= 1800 and year < 1833) and (len(first_third) < 100):
                     first_third.append(ready_sample)
                     book_added = True
 
-                elif (year >= 1833 and year < 1867) and (len(second_third) < 50):
+                elif (year >= 1833 and year < 1867) and (len(second_third) < 100):
                     second_third.append(ready_sample)
                     book_added = True
 
-                elif (year >= 1867 and year < 1900) and (len(third_third) < 50):
+                elif (year >= 1867 and year < 1900) and (len(third_third) < 100):
                     third_third.append(ready_sample)
                     book_added = True
 
@@ -93,7 +93,7 @@ def write_dataset():
     print("Final Dataset Counts")
     print("1st Third: ", len(first_third))
     print("2nd Third: ", len(second_third))
-    print("3rd Third: ", len(third_third))
+    print("3rd Third: ", len(third_third), "\n")
 
     # Write Recorded Samples to Files
     samples = {
