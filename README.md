@@ -2,8 +2,8 @@ Literary Time Classifier
 
 Dataset
 Period classes: 3
-Books per class: 100
-Total books: 300
+Book excerpts per class: 100
+Total excerpts: 300
 
 Source: biglam/blbooks-parquet (based off TheBritishLibrary/blbooks)
 
@@ -16,3 +16,13 @@ Class	                    Publication years
 Task 1.
 Get 100 English book excerpts from each century-third, that have sufficient OCR scores, and no author can contribute to more
 than one excerpt across all centuries.
+
+
+Task 2.
+Design LLM classifier to predict the century-third of a book excerpt with Pydantic model structued output,
+confidence score and explanation. Results are scored by accuracy.
+
+
+TO-DO:
+1. Run llm_classifier and see results
+2. Add f1-score, recall, precision to llm classifier
