@@ -3,7 +3,6 @@ import random
 import json
 
 def write_dataset():
-
     DATASET = "biglam/blbooks-parquet"
 
     print("Dataset Source: ", DATASET, "\n")
@@ -16,9 +15,9 @@ def write_dataset():
     print("\nDataset Preview: ", dataset, "\n")
 
     # Thirds of the 19th Century
-    first_third  = []    # 1800 - 1832
-    second_third = []    # 1833 - 1866
-    third_third  = []    # 1867 - 1899
+    first_third  = []    # 1800 - 1832 (inclusive)
+    second_third = []    # 1833 - 1866 (inclusive)
+    third_third  = []    # 1867 - 1899 (inclusive)
 
     # Prevent repeat books and authors
     seen_authors = set()
@@ -42,7 +41,7 @@ def write_dataset():
             
             if sample["multi_language"] == False and sample["Language_1"] == "English":
                 try: 
-                    year = int(sample["raw_date"]) 
+                    year = int(sample["raw_date"])
                 except: 
                     continue
                 
@@ -107,3 +106,7 @@ def write_dataset():
             json.dump(data, f, ensure_ascii=False, indent=4)
 
     print("Dataset Files Written")
+
+
+if __name__ == "__main__":
+    write_dataset()

@@ -1,25 +1,25 @@
 import json
 from sklearn.model_selection import train_test_split
-from prepare_dataset import write_dataset
 
+# get_dataset() returns the samples for each century-third from written dataset
+# Ensure dataset files have been written before running get_dataset
 def get_dataset():
-    write_dataset()
 
-    # Book exceprts from 1800 to 1832 (inclusive)
+    # Book excerpts from 1800 to 1832 (inclusive)
     with open("../data/first_third.json", "r", encoding="utf-8") as f:
         first_third = json.load(f)
 
-    # Book exceprts from 1833 to 1866 (inclusive)
+    # Book excerpts from 1833 to 1866 (inclusive)
     with open("../data/second_third.json", "r", encoding="utf-8") as f:
         second_third = json.load(f)
 
-    # Book exceprts from 1867 to 1899 (inclusive)
+    # Book excerpts from 1867 to 1899 (inclusive)
     with open("../data/third_third.json", "r", encoding="utf-8") as f:
         third_third = json.load(f)
 
     return first_third, second_third, third_third
 
-
+# classify_year_to_period maps a year to its corresponding century-third
 def classify_year_to_period(year):
     if year >= 1800 and year < 1833:
         return "1800-1832"
@@ -54,7 +54,3 @@ def get_train_and_test_data():
         y_test.extend(y_test_part)
 
     return X_train, X_test, y_train, y_test
-
-
-if __name__ == "__main__":
-    get_dataset()
