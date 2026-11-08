@@ -24,4 +24,17 @@ confidence score and explanation. Results are scored by accuracy.
 
 
 TO-DO:
-1. Add accuracy, f1-score, recall, precision to a function that can pass to llm classifier results
+1. Add accuracy, f1-score, recall, precision, confusion matrix to a function that can pass to llm classifier results
+and other model results later
+
+
+2. Implement
+
+Model	Approach
+Model 1	TF-IDF + Logistic Regression
+Model 2	TF-IDF (character n-grams) + Linear SVM
+
+3. Implement
+TypeScript Frontend, where user has option to put text and
+each model responds with their prediction, confidence (except for svm), 
+and in llm case, reasoning.

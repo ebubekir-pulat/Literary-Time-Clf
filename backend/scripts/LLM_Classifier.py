@@ -38,8 +38,9 @@ for i, sample in enumerate(X_test):
     {sample}
 
     Provide your best prediction and explain your reasoning
-    for your prediction concisely. Record a confidence score, 
-    of how confident you are in your answer, as well.
+    for your prediction very concisely. Record a confidence score, 
+    of how confident you are in your answer, as well. The
+    confidence score is a decimal from 0.0 to 1.0 inclusive.
     """
 
     response = chat(
