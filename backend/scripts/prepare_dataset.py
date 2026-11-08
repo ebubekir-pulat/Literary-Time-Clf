@@ -10,7 +10,7 @@ def write_dataset():
 
     dataset = load_dataset(DATASET, split='train', streaming=True, trust_remote_code=True)
 
-    rd_seed = random.seed(2)
+    rd_seed = random.seed(3)
     dataset = dataset.shuffle(seed=rd_seed, buffer_size=10_000)
 
     print("\nDataset Preview: ", dataset, "\n")
