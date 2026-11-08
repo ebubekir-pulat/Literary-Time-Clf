@@ -9,7 +9,7 @@ def write_dataset():
 
     dataset = load_dataset(DATASET, split='train', streaming=True, trust_remote_code=True)
 
-    rd_seed = random.seed(3)
+    rd_seed = random.seed(4)
     dataset = dataset.shuffle(seed=rd_seed, buffer_size=10_000)
 
     print("\nDataset Preview: ", dataset, "\n")
@@ -52,6 +52,9 @@ def write_dataset():
                 text = sample["text"]                  # sample text
                 title = sample["title"]                # book title
                 record_id = sample["record_id"]        # book id
+
+                if not text.strip():
+                    continue
 
                 if (not ocr_score) or (not ocr_score_std) or ocr_score < 0.50 or ocr_score_std > 0.4:
                     continue
