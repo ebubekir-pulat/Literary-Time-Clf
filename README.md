@@ -30,9 +30,11 @@ Task 4. Add TF-IDF + Logistic Regression and TF-IDF (character n-grams) + Linear
 
 TO-DO:
 
-1. Test ML_Classifier.py
+1. Write README, and record results in there.
 
 2. Implement
 TypeScript Frontend, where user has option to put text and
 each model responds with their prediction, confidence (except for svm), 
 and in llm case, reasoning.
+
+3. Update README 
