@@ -26,15 +26,13 @@ confidence score and explanation. Results are scored by accuracy.
 Task 3.
 Added accuracy, f1-score, recall, precision and confusion matrix to scoring.
 
+Task 4. Add TF-IDF + Logistic Regression and TF-IDF (character n-grams) + Linear SVM
+
 TO-DO:
 
-1. Implement
+1. Test ML_Classifier.py
 
-Model	Approach
-Model 1	TF-IDF + Logistic Regression
-Model 2	TF-IDF (character n-grams) + Linear SVM
-
-3. Implement
+2. Implement
 TypeScript Frontend, where user has option to put text and
 each model responds with their prediction, confidence (except for svm), 
 and in llm case, reasoning.
