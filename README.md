@@ -23,12 +23,12 @@ Design LLM classifier to predict the century-third of a book excerpt with Pydant
 confidence score and explanation. Results are scored by accuracy.
 
 
+Task 3.
+Added accuracy, f1-score, recall, precision and confusion matrix to scoring.
+
 TO-DO:
-1. Add accuracy, f1-score, recall, precision, confusion matrix to a function that can pass to llm classifier results
-and other model results later
 
-
-2. Implement
+1. Implement
 
 Model	Approach
 Model 1	TF-IDF + Logistic Regression
