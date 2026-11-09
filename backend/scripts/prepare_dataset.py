@@ -1,5 +1,4 @@
 from datasets import load_dataset
-import random
 import json
 
 def write_dataset():
@@ -9,8 +8,7 @@ def write_dataset():
 
     dataset = load_dataset(DATASET, split='train', streaming=True, trust_remote_code=True)
 
-    rd_seed = random.seed(4)
-    dataset = dataset.shuffle(seed=rd_seed, buffer_size=10_000)
+    dataset = dataset.shuffle(seed=42, buffer_size=10_000)
 
     print("\nDataset Preview: ", dataset, "\n")
 
