@@ -2,8 +2,8 @@ import json
 from ollama import chat
 from pydantic import BaseModel, Field
 from typing import Literal
-from sklearn.metrics import accuracy_score
 from load_dataset import get_train_and_test_data
+from score import print_final_results
 
 MODEL = "qwen2.5:3b"
 
@@ -71,4 +71,4 @@ for i, sample in enumerate(X_test):
 y_pred = [pred["prediction"]["answer"] for pred in results]
 
 print("Final Results")
-print("Accuracy: ", accuracy_score(y_test, y_pred))
+print_final_results(y_test, y_pred)
