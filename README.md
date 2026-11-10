@@ -17,6 +17,8 @@ Classifies English book excerpts into three periods of the 19th century:
   - **TF-IDF + Logistic Regression**
   - **Character TF-IDF (1–3 grams) + Linear SVM**
 - Evaluation reports accuracy, precision, recall, F1-score, and a confusion matrix.
+  
+NOTE: SVC and SVM used interchangeably in repository.
 
 ## Project structure
 
