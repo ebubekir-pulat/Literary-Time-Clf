@@ -9,7 +9,7 @@ Classifies English book excerpts into three periods of the 19th century:
 ## Current status
 
 - Dataset preparation is implemented using `biglam/blbooks-parquet`
-  (this dataset is based off TheBritishLibrary/blbooks).
+  (this dataset source is based off TheBritishLibrary/blbooks).
 - The preparation script targets 100 excerpts per period, filters for English-language text and OCR quality, and avoids repeated authors/publication names/record IDs.
 - Train/test loading and an 80/20 split are implemented.
 - Three classifiers are implemented:
@@ -24,6 +24,10 @@ Classifies English book excerpts into three periods of the 19th century:
 results/
     LLM_Cfs_Mtx.png
     LLM_clf_report.png
+    TF_IDF_Lin_SVC_Cfs_Mtx.png
+    TF_IDF_Lin_SVC_Clf_Report.png
+    TF_IDF_Log_Reg_Cfs_Mtx.png
+    TF_IDF_Log_Reg_Clf_Report.png
 backend/
   requirements.txt
   data/
@@ -50,10 +54,10 @@ cd backend/scripts
 python prepare_dataset.py
 ```
 
-Then run a classifier from `backend/scripts`:
+Then run the classifiers from `backend/scripts`:
 
 ```bash
-python ML_Classifier.py
+python ML_Classifier.py # Run the scikit-learn models over the dataset
 # or
 python LLM_Classifier.py
 ```
@@ -68,52 +72,30 @@ qwen2.5:3b Results
 
 ![Alt Text](results/LLM_Cfs_Mtx.png)
 
+  
+  
+TF-IDF + Logistic Regression Results
+  
+![Alt Text](results/TF_IDF_Log_Reg_Clf_Report.png)
+  
+
+![Alt Text](results/TF_IDF_Log_Reg_Cfs_Mtx.png)
+
+  
+
+TF-IDF (character n-gram (1, 3)) + Linear SVC Results
+  
+![Alt Text](results/TF_IDF_Lin_SVC_Clf_Report.png)
+  
+![Alt Text](results/TF_IDF_Lin_SVC_Cfs_Mtx.png)
+
+
 ## Outstanding work / limitations
 
 - The dataset JSON files are not included in the supplied project archive; generate them before training or evaluation.
-- TO-DO: No sklearn model evaluation results are currently recorded.
-- TO-DO: The TypeScript frontend is not implemented.
+- TO-DO: The TypeScript frontend is not implemented
+  (where user has option to put text and each model 
+  responds with their prediction, confidence (except for svm), 
+  and in llm case, reasoning.)
 - Saved model files are written to the current working directory.
 - The scoring script uses Matplotlib's `TkAgg` backend, which may require a local GUI environment.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-TO-DO:
-
-2. Implement
-TypeScript Frontend, where user has option to put text and
-each model responds with their prediction, confidence (except for svm), 
-and in llm case, reasoning.
-
-3. Update README 
