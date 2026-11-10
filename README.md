@@ -17,7 +17,9 @@ Classifies English book excerpts into three periods of the 19th century:
   - **TF-IDF + Logistic Regression**
   - **Character TF-IDF (1–3 grams) + Linear SVM**
 - Evaluation reports accuracy, precision, recall, F1-score, and a confusion matrix.
-  
+- Each model can provide results for a single input, which can be wired up to a frontend
+  for user usage.
+
 NOTE: SVC and SVM used interchangeably in repository.
 
 ## Project structure
@@ -38,6 +40,7 @@ backend/
     load_dataset.py
     LLM_Classifier.py
     ML_Classifier.py
+    User_Response.py
     score.py
 ```
 
@@ -67,7 +70,9 @@ python LLM_Classifier.py
 The LLM classifier requires Ollama and the `qwen2.5:3b` model to be available locally.
 
 ## Model Results
-
+Results of the models over a subset of the `biglam/blbooks-parquet` dataset.
+  
+  
 qwen2.5:3b Results
 
 ![Alt Text](results/LLM_clf_report.png)
