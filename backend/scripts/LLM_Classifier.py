@@ -17,58 +17,64 @@ class Prediction(BaseModel):
     confidence: float = Field(ge=0.0, le=1.0)
     explanation: str
 
-# Predict individual samples
-results = []
 
-X_train, X_test, y_train, y_test = get_train_and_test_data()
+def main():
+    # Predict individual samples
+    results = []
 
-for i, sample in enumerate(X_test):
+    X_train, X_test, y_train, y_test = get_train_and_test_data()
 
-    prompt = f"""
-    Determine which period this historical book excerpt most likely
-    originates from, based on its language, spelling, vocabulary,
-    grammar, writing style and any other possible factors.
+    for i, sample in enumerate(X_test):
 
-    Possible periods:
-    - 1800-1832 (inclusive)
-    - 1833-1866 (inclusive)
-    - 1867-1899 (inclusive)
+        prompt = f"""
+        Determine which period this historical book excerpt most likely
+        originates from, based on its language, spelling, vocabulary,
+        grammar, writing style and any other possible factors.
 
-    Book excerpt:
-    {sample}
+        Possible periods:
+        - 1800-1832 (inclusive)
+        - 1833-1866 (inclusive)
+        - 1867-1899 (inclusive)
 
-    Provide your best prediction and explain your reasoning
-    for your prediction very concisely. Record a confidence score, 
-    of how confident you are in your answer, as well. The
-    confidence score is a decimal from 0.0 to 1.0 inclusive.
-    """
+        Book excerpt:
+        {sample}
 
-    response = chat(
-        model=MODEL,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        format=Prediction.model_json_schema()
-    )
+        Provide your best prediction and explain your reasoning
+        for your prediction very concisely. Record a confidence score, 
+        of how confident you are in your answer, as well. The
+        confidence score is a decimal from 0.0 to 1.0 inclusive.
+        """
 
-    prediction = Prediction.model_validate_json(
-        response.message.content
-    )
+        response = chat(
+            model=MODEL,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            format=Prediction.model_json_schema()
+        )
 
-    results.append({
-        "prediction": prediction.model_dump()
-    })
+        prediction = Prediction.model_validate_json(
+            response.message.content
+        )
 
-    print(f"Sample {i+1}/{len(X_test)}")
-    print(prediction.model_dump())
-    print("Expected: ", y_test[i])
-    print("-" * 50)
+        results.append({
+            "prediction": prediction.model_dump()
+        })
+
+        print(f"Sample {i+1}/{len(X_test)}")
+        print(prediction.model_dump())
+        print("Expected: ", y_test[i])
+        print("-" * 50)
 
 
-y_pred = [pred["prediction"]["answer"] for pred in results]
+    y_pred = [pred["prediction"]["answer"] for pred in results]
 
-print("Final Results")
-print_final_results(y_test, y_pred)
+    print("Final Results")
+    print_final_results(y_test, y_pred)
+
+
+if __name__ == "__main__":
+    main()
