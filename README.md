@@ -21,6 +21,9 @@ Classifies English book excerpts into three periods of the 19th century:
 ## Project structure
 
 ```text
+results/
+    LLM_Cfs_Mtx.png
+    LLM_clf_report.png
 backend/
   requirements.txt
   data/
@@ -57,10 +60,18 @@ python LLM_Classifier.py
 
 The LLM classifier requires Ollama and the `qwen2.5:3b` model to be available locally.
 
+## Model Results
+
+qwen2.5:3b Results
+
+![Alt Text](results/LLM_clf_report.png)
+
+![Alt Text](results/LLM_Cfs_Mtx.png)
+
 ## Outstanding work / limitations
 
 - The dataset JSON files are not included in the supplied project archive; generate them before training or evaluation.
-- TO-DO: No model evaluation results are currently recorded.
+- TO-DO: No sklearn model evaluation results are currently recorded.
 - TO-DO: The TypeScript frontend is not implemented.
 - Saved model files are written to the current working directory.
 - The scoring script uses Matplotlib's `TkAgg` backend, which may require a local GUI environment.
