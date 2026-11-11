@@ -17,7 +17,7 @@ Classifies English book excerpts into three periods of the 19th century:
   - **TF-IDF + Logistic Regression**
   - **Character TF-IDF (1–3 grams) + Linear SVM**
 - Evaluation reports accuracy, precision, recall, F1-score, and a confusion matrix.
-- Each model can provide results for a single input, which can be wired up to a frontend
+- Each model can provide results for a single input, which are wired to a (TS+React) frontend
   for user usage.
 
 NOTE: SVC and SVM used interchangeably in repository.
@@ -25,6 +25,8 @@ NOTE: SVC and SVM used interchangeably in repository.
 ## Project structure
 
 ```text
+frontend/
+    src/
 results/
     LLM_Cfs_Mtx.png
     LLM_clf_report.png
@@ -34,6 +36,7 @@ results/
     TF_IDF_Log_Reg_Clf_Report.png
 backend/
   requirements.txt
+  app.py
   data/
   scripts/
     prepare_dataset.py
@@ -69,6 +72,14 @@ python LLM_Classifier.py
 
 The LLM classifier requires Ollama and the `qwen2.5:3b` model to be available locally.
 
+
+How to Query Each Model To Classify An Input Text
+1. Run `python -m uvicorn app:app --reload` in backend directory
+2. Run `npm install` then `npm run dev` in frontend directory
+3. Go to `http://localhost:5173` to input your text to classify
+  
+
+
 ## Model Results
 Results of the models over a subset of the `biglam/blbooks-parquet` dataset.
   
@@ -100,5 +111,4 @@ TF-IDF (character n-gram (1, 3)) + Linear SVC Results
 ## Outstanding work / limitations
 
 - The dataset JSON files are not included in the supplied project archive; generate them before training or evaluation.
-- Saved model files are written to the current working directory.
 - The scoring script uses Matplotlib's `TkAgg` backend, which may require a local GUI environment.
