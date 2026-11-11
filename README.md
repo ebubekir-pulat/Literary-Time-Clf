@@ -100,9 +100,5 @@ TF-IDF (character n-gram (1, 3)) + Linear SVC Results
 ## Outstanding work / limitations
 
 - The dataset JSON files are not included in the supplied project archive; generate them before training or evaluation.
-- TO-DO: The TypeScript frontend is not implemented
-  (where user has option to put text and each model 
-  responds with their prediction, confidence (except for svm), 
-  and in llm case, reasoning.)
 - Saved model files are written to the current working directory.
 - The scoring script uses Matplotlib's `TkAgg` backend, which may require a local GUI environment.

@@ -7,4 +7,4 @@ seaborn
 ollama
 pydantic
 scikit-learn
-fastapi
+fastapi[standard]
