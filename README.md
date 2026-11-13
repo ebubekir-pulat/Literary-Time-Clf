@@ -79,6 +79,12 @@ How to Query Each Model To Classify An Input Text
 3. Go to `http://localhost:5173` to input your text to classify
   
 
+![Alt Text](screenshots/initial-page.png)
+  
+then
+  
+  
+![Alt Text](screenshots/page-with-results.png)
 
 ## Model Results
 Results of the models over a subset of the `biglam/blbooks-parquet` dataset.
